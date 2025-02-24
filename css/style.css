@@ -62,7 +62,7 @@ body {
     position: fixed;
     height: 100%;
     width: 100%;
-    background: url(../img/Office.png) no-repeat;
+    background: url(../img/Network.png) no-repeat;
     background-size: 100%;
     z-index: -1;
 }
