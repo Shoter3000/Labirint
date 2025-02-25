@@ -74,7 +74,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.525);
     backdrop-filter: blur(5px);
     position: relative;
     overflow: hidden;
@@ -168,7 +168,7 @@ body {
 
 #box2btn {
     flex-direction: row;
-    background: linear-gradient(0deg, #9a9a9a, #7d7d7d);
+    background: linear-gradient(0deg, #e7e7e7d9, #d8d8d8d8);
     border-radius: 12px;
 }
 
@@ -211,7 +211,7 @@ button:hover {
 }
 
 button:disabled {
-    background: linear-gradient(135deg, #e0e0e0, #cccccc);
+    background: linear-gradient(135deg, #b6b6b6, #b0b0b0);
     color: #888888;
     cursor: not-allowed;
     transform: none;
@@ -229,7 +229,7 @@ button:disabled {
     border: none;
     border-radius: 12px;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.9);
+    background: linear-gradient(0deg, #e7e7e7d9, #d8d8d8d8);
     width: 100%;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     margin: 10px 0;

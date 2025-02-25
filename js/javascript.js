@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let animating = false;
     let crta = 0;
 
-    const colors = ["rgb(127, 172, 255)", "rgb(255, 127, 127)", "rgb(127, 255, 127)", "rgb(255, 255, 127)"];
+    const colors = ["rgb(200, 136, 46)", "rgb(60, 179, 113)", "rgb(70, 130, 180)", "rgb(255, 69, 0)"];
     const outerOffset = 4;
     const innerOffset = 3; 
     let speed = 1;
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let reverseY = 1;
     let reverseCrta = 1;
 
-    const colors = ["rgb(127, 172, 255)", "rgb(255, 127, 127)", "rgb(127, 255, 127)", "rgb(255, 255, 127)"];
+    const colors = ["rgb(146, 109, 80)", "rgb(76, 153, 108)", "rgb(81, 139, 181)", "rgb(253, 141, 129)"];
     const outerOffset = 4;
     const innerOffset = 3; 
     let speed = 1;
