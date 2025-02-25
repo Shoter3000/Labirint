@@ -76,22 +76,53 @@ body {
     align-items: center;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Data flow effect */
+.header::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(74, 108, 247, 0.2),
+        rgba(110, 142, 251, 0.2),
+        transparent
+    );
+    animation: dataFlow 3s linear infinite;
+    animation-timing-function: linear;
 }
 
 .page-title {
     font-family: "Ubuntu", serif;
     font-weight: 700;
     font-size: 4rem;
+    position: relative;
     color: #4a6cf7;
     text-align: center;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 4px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     background: linear-gradient(135deg, #6e8efb, #4a6cf7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: titleGlow 2s ease-in-out infinite;
 }
+
+@keyframes dataFlow {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes titleGlow {
+    0%, 100% { filter: brightness(1) drop-shadow(0 0 10px rgba(74, 108, 247, 0.3)); }
+    50% { filter: brightness(1.2) drop-shadow(0 0 15px rgba(74, 108, 247, 0.5)); }
+}
+
 
 .monitor {
     display: flex;
@@ -123,7 +154,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 70vh;
 }
 
 #title {
@@ -152,7 +183,7 @@ body {
     padding: 10px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    width: 20vh;
+    width: 23vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
