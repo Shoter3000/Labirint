@@ -525,11 +525,12 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Define 4 colors for the lines
     const colors = [
-      "rgb(200, 136, 46)",
-      "rgb(60, 179, 113)",
-      "rgb(70, 130, 180)",
-      "rgb(255, 69, 0)"
-    ];
+        "rgb(255, 69, 0)",
+        "rgb(70, 130, 180)",
+        "rgb(60, 179, 113)",
+        "rgb(200, 136, 46)"
+      ];
+      
   
     // Preload the moving image (for example, hdmi.png)
     const img = new Image();
