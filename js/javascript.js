@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.getElementById('start').addEventListener('click', function () {
-        const canvas = document.getElementById('canvas');
+        const canvas = document.getElementById('linesCanvas');
         const ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         x = 0;
@@ -517,4 +517,118 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //oboje
-
+document.addEventListener("DOMContentLoaded", function () {
+    let x = 0;
+    let y = 1;
+    let animating = false;
+    let crta = 0;
+  
+    // Define 4 colors for the lines
+    const colors = [
+      "rgb(200, 136, 46)",
+      "rgb(60, 179, 113)",
+      "rgb(70, 130, 180)",
+      "rgb(255, 69, 0)"
+    ];
+  
+    // Preload the moving image (for example, hdmi.png)
+    const img = new Image();
+    img.src = '../img/ethernet.png';
+    img.onload = () => console.log("Image loaded");
+    img.onerror = () => console.error("Failed to load image");
+  
+    // Get the speed slider value
+    const speedSlider = document.querySelector("#myRange");
+  
+    // Use two canvases:
+    const linesCanvas = document.getElementById("linesCanvas");
+    const linesCtx = linesCanvas.getContext("2d");
+  
+    const imageCanvas = document.getElementById("imageCanvas");
+    const imageCtx = imageCanvas.getContext("2d");
+  
+    // Our path points array
+    const resitev = [
+      234,2, 234,10, 202,10, 202,42, 186,42, 186,138, 170,138, 170,122,
+      154,122, 154,138, 138,138, 138,202, 154,202, 154,218, 138,218, 138,250,
+      122,250, 122,266, 26,266, 26,282, 74,282, 74,298, 90,298, 90,314,
+      74,314, 74,330, 90,330, 90,346, 58,346, 58,362, 106,362, 106,346,
+      122,346, 122,330, 138,330, 138,362, 186,362, 186,282, 202,282, 202,330,
+      218,330, 218,346, 202,346, 202,378, 186,378, 186,394, 218,394, 218,410,
+      234,410, 234,442, 202,442, 202,458, 266,458, 266,474, 250,474, 250,482
+    ];
+  
+    function moveImage() {
+      // Get the current speed from the slider (as a number)
+      const speed = parseFloat(speedSlider.value);
+  
+      // IMPORTANT: Do NOT clear the lines canvas so that the colored lines remain.
+      // Instead, clear only the image canvas.
+      imageCtx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
+  
+      if (x < resitev.length - 2) {
+        const startX = resitev[x];
+        const startY = resitev[y];
+        const endX = resitev[x + 2];
+        const endY = resitev[y + 2];
+  
+        const dolzinaCrte = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2);
+        crta += speed / dolzinaCrte;
+        if (crta > 1) crta = 1;
+  
+        const vmesx = startX + (endX - startX) * crta;
+        const vmesy = startY + (endY - startY) * crta;
+  
+        // ─── DRAW 4 LINES ON THE PERMANENT (lines) LAYER ───
+        // We draw each line with a slight offset.
+        for (let i = 0; i < colors.length; i++) {
+          linesCtx.strokeStyle = colors[i];
+          linesCtx.lineWidth = 1;
+          linesCtx.beginPath();
+          // Calculate an offset for each line (centered around zero)
+          let offset = (i - 1.5) * 3; // Adjust the multiplier (3) as needed
+          linesCtx.moveTo(startX + offset, startY + offset);
+          linesCtx.lineTo(vmesx + offset, vmesy + offset);
+          linesCtx.stroke();
+          linesCtx.closePath();
+        }
+  
+        // ─── DRAW THE MOVING IMAGE ON THE IMAGE LAYER ───
+        if (img.complete && img.naturalWidth !== 0) {
+          imageCtx.drawImage(img, vmesx - img.width / 2, vmesy - img.height / 2);
+        }
+  
+        if (crta >= 1) {
+          x += 2;
+          y += 2;
+          crta = 0;
+        }
+        requestAnimationFrame(moveImage);
+      } else {
+        animating = false;
+        document.getElementById("start").disabled = false;
+        document.getElementById("slika").disabled = false;
+        document.getElementById("oboje").disabled = false;
+      }
+    }
+  
+    // When the "slika" button is clicked, start the animation.
+    document.getElementById("oboje").addEventListener("click", function () {
+      // Clear both canvases when starting
+      linesCtx.clearRect(0, 0, linesCanvas.width, linesCanvas.height);
+      imageCtx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
+      x = 0;
+      y = 1;
+      crta = 0;
+  
+      if (!animating) {
+        animating = true;
+        this.disabled = true;
+        document.getElementById("start").disabled = true;
+        document.getElementById("oboje").disabled = true;
+        document.getElementById("erase").disabled = true;
+        moveImage();
+      }
+    });
+  });
+  
