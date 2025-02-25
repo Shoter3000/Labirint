@@ -1,3 +1,19 @@
+//sweetalert
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.sweet').addEventListener('click', function() {
+        Swal.fire({
+            title: 'Razvijalec',
+            text: 'Nejc Vidmar',
+            icon: 'info',
+            confirmButtonText: 'Zapri',
+            customClass: {
+                confirmButton: 'swal-button',
+            }
+        });
+    });
+});
+
+
 document.addEventListener("DOMContentLoaded", function () {
     let x = 0;
     let y = 1;
