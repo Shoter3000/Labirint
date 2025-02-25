@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     function narisi() {
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext("2d");
+        const canvas = document.getElementById('linesCanvas');
+        const ctx = linesCanvas.getContext("2d");
         
         if (!resitev) {
             resitev = [234,2, 234,10, 202,10, 202,42, 186,42, 186,138, 170,138, 170,122, 154,122, 154,138, 138,138, 138,202, 154,202, 154,218, 138,218, 138,250, 122,250, 122,266, 26,266, 26,282, 74,282, 74,298, 90,298, 90,314, 74,314, 74,330, 90,330, 90,346, 58,346, 58,362, 106,362, 106,346, 122,346, 122,330, 138,330, 138,362, 186,362, 186,282, 202,282, 202,330, 218,330, 218,346, 202,346, 202,378, 186,378, 186,394, 218,394, 218,410, 234,410, 234,442, 202,442, 202,458, 266,458, 266,474, 250,474, 250,482];
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('start').addEventListener('click', function () {
         const canvas = document.getElementById('linesCanvas');
-        const ctx = canvas.getContext("2d");
+        const ctx = linesCanvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         x = 0;
         y = 1;
@@ -218,8 +218,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     function narisi() {
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext("2d");
+const canvas = document.getElementById('linesCanvas');
+        const ctx = linesCanvas.getContext("2d");
         
         if (!resitev) {
             resitev = [234,2, 234,10, 202,10, 202,42, 186,42, 186,138, 170,138, 170,122, 154,122, 154,138, 138,138, 138,202, 154,202, 154,218, 138,218, 138,250, 122,250, 122,266, 26,266, 26,282, 74,282, 74,298, 90,298, 90,314, 74,314, 74,330, 90,330, 90,346, 58,346, 58,362, 106,362, 106,346, 122,346, 122,330, 138,330, 138,362, 186,362, 186,282, 202,282, 202,330, 218,330, 218,346, 202,346, 202,378, 186,378, 186,394, 218,394, 218,410, 234,410, 234,442, 202,442, 202,458, 266,458, 266,474, 250,474, 250,482];
@@ -343,8 +343,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function reverseAnimation() {
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext("2d");
+const canvas = document.getElementById('linesCanvas');
+        const ctx = linesCanvas.getContext("2d");
         
         if (!resitev) return;
         
@@ -490,8 +490,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.getElementById('start').addEventListener('click', function () {
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext("2d");
+const canvas = document.getElementById('linesCanvas');
+        const ctx = linesCanvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         x = 0;
         y = 1;
