@@ -454,17 +454,19 @@ document.addEventListener("DOMContentLoaded", function () {
                                     (resitev[reverseY + 2] - resitev[reverseY]) ** 2);
         const step = speed / dolzinaCrte;
         reverseCrta -= step;
+
         
         if (reverseCrta <= 0) {
             reverseCrta = 1;
             reverseX -= 2;
             reverseY -= 2;
         }
-        
+
         if (reverseX >= 0) {
             requestAnimationFrame(reverseAnimation);
         } else {
             isReversing = false;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             document.getElementById('start').disabled = false;
             document.getElementById('oboje').disabled = false;
             document.getElementById('erase').disabled = false;
