@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
+//narisi
 document.addEventListener("DOMContentLoaded", function () {
     let x = 0;
     let y = 1;

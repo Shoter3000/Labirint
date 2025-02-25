@@ -69,7 +69,7 @@ body {
 
 .header {
     width: 100%;
-    padding: 2rem 0;
+    padding: 1rem 0;
     margin-bottom: 1rem;
     display: flex;
     justify-content: center;
@@ -328,7 +328,7 @@ input[type="range"]::-moz-range-thumb:hover {
 }
 
 .swal-button:hover {
-    background: linear-gradient(135deg, #4a6cf7, #6e8efb);
+    background: linear-gradient(135deg, #4a6cf7, #6e8efb) !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
