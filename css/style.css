@@ -134,6 +134,16 @@ body {
     height: auto;
 }
 
+.sprite {
+    display: flex;
+    justify-content: center;
+}
+
+.sprite-img {
+    width: 50%;
+    height: auto;
+}
+
 #canvas {
     position: absolute;
     z-index: 333;
