@@ -27,6 +27,7 @@ class SpriteAnimator {
     }
 
     startAnimation() {
+        this.currentFrame = 0;
         this.intervalId = setInterval(() => this.updateFrame(), 1000 / this.frameRate);
     }
 
@@ -50,10 +51,10 @@ class SpriteAnimator {
         if (this.intervalId) {
             clearInterval(this.intervalId); // Ustavi animacijo, če teče
         }
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Pobriši platno
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Pobriši
     }
 };
-const spriteAnimator = new SpriteAnimator("../img/sprite.png", 371, 15, 10, "spriteCanvas");
+const spriteAnimator = new SpriteAnimator("../img/sprite.png", 185.4, 15, 10, "spriteCanvas");
 //narisi
 document.addEventListener("DOMContentLoaded", function () {
     let x = 0;
@@ -548,7 +549,20 @@ const canvas = document.getElementById('linesCanvas');
     });
 
     document.getElementById('erase').addEventListener('click', function () {
-        if (!isReversing && resitev) {
+        if (document.getElementById("oboje").disabled) {
+            const linesCanvas = document.getElementById("linesCanvas");
+            const linesCtx = linesCanvas.getContext("2d");
+        
+            const imageCanvas = document.getElementById("imageCanvas");
+            const imageCtx = imageCanvas.getContext("2d");
+
+            linesCtx.clearRect(0, 0, linesCanvas.width, linesCanvas.height);
+            imageCtx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
+            document.getElementById('change').src = 'img/monitor.gif';
+            spriteAnimator.clear();
+            document.getElementById("erase").disabled = true;
+        }
+        else if (!isReversing && resitev) {
             isReversing = true;
             spriteAnimator.clear();
             document.getElementById("start").disabled = true;
@@ -570,7 +584,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let animating = false;
     let crta = 0;
   
-    // Define 4 colors for the lines
+
     const colors = [
         "rgb(255, 69, 0)",
         "rgb(70, 130, 180)",
@@ -579,23 +593,23 @@ document.addEventListener("DOMContentLoaded", function () {
       ];
       
   
-    // Preload the moving image (for example, hdmi.png)
+
     const img = new Image();
-    img.src = '../img/ethernet.png';
+    img.src = 'img/ethernet.png';
     img.onload = () => console.log("Image loaded");
     img.onerror = () => console.error("Failed to load image");
   
-    // Get the speed slider value
+
     const speedSlider = document.querySelector("#myRange");
   
-    // Use two canvases:
+
     const linesCanvas = document.getElementById("linesCanvas");
     const linesCtx = linesCanvas.getContext("2d");
   
     const imageCanvas = document.getElementById("imageCanvas");
     const imageCtx = imageCanvas.getContext("2d");
   
-    // Our path points array
+
     const resitev = [
       234,2, 234,10, 202,10, 202,42, 186,42, 186,138, 170,138, 170,122,
       154,122, 154,138, 138,138, 138,202, 154,202, 154,218, 138,218, 138,250,
@@ -607,14 +621,14 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
   
     function moveImage() {
-      // Get the current speed from the slider (as a number)
+
       const speed = parseFloat(speedSlider.value);
   
-      // IMPORTANT: Do NOT clear the lines canvas so that the colored lines remain.
-      // Instead, clear only the image canvas.
+
       imageCtx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
   
       if (x < resitev.length - 2) {
+
         const startX = resitev[x];
         const startY = resitev[y];
         const endX = resitev[x + 2];
@@ -627,21 +641,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const vmesx = startX + (endX - startX) * crta;
         const vmesy = startY + (endY - startY) * crta;
   
-        // ─── DRAW 4 LINES ON THE PERMANENT (lines) LAYER ───
-        // We draw each line with a slight offset.
         for (let i = 0; i < colors.length; i++) {
           linesCtx.strokeStyle = colors[i];
           linesCtx.lineWidth = 1;
           linesCtx.beginPath();
-          // Calculate an offset for each line (centered around zero)
-          let offset = (i - 1.5) * 3; // Adjust the multiplier (3) as needed
+
+          let offset = (i - 1.5) * 3; 
           linesCtx.moveTo(startX + offset, startY + offset);
           linesCtx.lineTo(vmesx + offset, vmesy + offset);
           linesCtx.stroke();
           linesCtx.closePath();
         }
   
-        // ─── DRAW THE MOVING IMAGE ON THE IMAGE LAYER ───
+
         if (img.complete && img.naturalWidth !== 0) {
           imageCtx.drawImage(img, vmesx - img.width / 2, vmesy - img.height / 2);
         }
@@ -656,8 +668,7 @@ document.addEventListener("DOMContentLoaded", function () {
         animating = false;
         spriteAnimator.startAnimation();	
         document.getElementById("start").disabled = false;
-        document.getElementById("slika").disabled = false;
-        document.getElementById("oboje").disabled = false;
+        document.getElementById("erase").disabled = false;
         document.getElementById('change').src = 'img/monitor.png';
       }
     }
