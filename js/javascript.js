@@ -1,3 +1,5 @@
+import { preloadedImages } from './image.js';
+
 //sweetalert
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.sweet').addEventListener('click', function() {
@@ -16,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //sprite
 class SpriteAnimator {
     constructor(imageSrc, frameHeight, totalFrames, frameRate, canvasId) {
-        this.image = new Image();
+        this.image = preloadedImages[imageSrc];
         this.image.src = imageSrc;
         this.frameHeight = frameHeight;
         this.totalFrames = totalFrames;
@@ -694,7 +696,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-
 
 
   
