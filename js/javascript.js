@@ -214,6 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('start').disabled = false;
             document.getElementById('oboje').disabled = false;
             document.getElementById('erase').disabled = false;
+            document.getElementById('change').src = 'img/monitor.png';
         }
     }
 
@@ -232,6 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("erase").disabled = true;
             document.getElementById("oboje").disabled = true;
             narisi();
+            document.getElementById('change').src = 'img/monitor.gif';
         }
     });
 });
@@ -556,6 +558,7 @@ const canvas = document.getElementById('linesCanvas');
             reverseY = resitev.length - 3;
             reverseCrta = 1;
             requestAnimationFrame(reverseAnimation);
+            document.getElementById('change').src = 'img/monitor.gif';
         }
     });
 });
@@ -655,6 +658,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("start").disabled = false;
         document.getElementById("slika").disabled = false;
         document.getElementById("oboje").disabled = false;
+        document.getElementById('change').src = 'img/monitor.png';
       }
     }
   
@@ -675,12 +679,11 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("oboje").disabled = true;
         document.getElementById("erase").disabled = true;
         moveImage();
+        document.getElementById('change').src = 'img/monitor.gif';
       }
     });
   });
 
-
-  //sprite
 
 
   
