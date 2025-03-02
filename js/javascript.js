@@ -13,6 +13,47 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+//sprite
+class SpriteAnimator {
+    constructor(imageSrc, frameHeight, totalFrames, frameRate, canvasId) {
+        this.image = new Image();
+        this.image.src = imageSrc;
+        this.frameHeight = frameHeight;
+        this.totalFrames = totalFrames;
+        this.frameRate = frameRate; // Frames per second
+        this.currentFrame = 0;
+        this.canvas = document.getElementById(canvasId);
+        this.ctx = this.canvas.getContext("2d");
+    }
+
+    startAnimation() {
+        this.intervalId = setInterval(() => this.updateFrame(), 1000 / this.frameRate);
+    }
+
+    updateFrame() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.drawImage(
+            this.image,
+            0, this.currentFrame * this.frameHeight, // Source x, y
+            this.image.width, this.frameHeight,     // Source width, height
+            0, 0,                                   // Destination x, y
+            this.canvas.width, this.canvas.height  // Destination width, height
+        );
+
+        if (this.currentFrame >= this.totalFrames - 1) {
+            clearInterval(this.intervalId); // Stop animation at last frame
+        } else {
+            this.currentFrame++; // Move to the next frame
+        }
+    }
+    clear() {
+        if (this.intervalId) {
+            clearInterval(this.intervalId); // Ustavi animacijo, če teče
+        }
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Pobriši platno
+    }
+};
+const spriteAnimator = new SpriteAnimator("../img/sprite.png", 371, 15, 10, "spriteCanvas");
 //narisi
 document.addEventListener("DOMContentLoaded", function () {
     let x = 0;
@@ -169,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
             requestAnimationFrame(narisi);
         } else {
             animating = false;
-            initializeSpriteAnimator();
+            spriteAnimator.startAnimation();
             document.getElementById('start').disabled = false;
             document.getElementById('oboje').disabled = false;
             document.getElementById('erase').disabled = false;
@@ -187,6 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!animating) {
             animating = true;
             this.disabled = true;
+            spriteAnimator.clear();
             document.getElementById("erase").disabled = true;
             document.getElementById("oboje").disabled = true;
             narisi();
@@ -506,6 +548,7 @@ const canvas = document.getElementById('linesCanvas');
     document.getElementById('erase').addEventListener('click', function () {
         if (!isReversing && resitev) {
             isReversing = true;
+            spriteAnimator.clear();
             document.getElementById("start").disabled = true;
             document.getElementById("erase").disabled = true;
             document.getElementById("oboje").disabled = true;
@@ -608,15 +651,16 @@ document.addEventListener("DOMContentLoaded", function () {
         requestAnimationFrame(moveImage);
       } else {
         animating = false;
+        spriteAnimator.startAnimation();	
         document.getElementById("start").disabled = false;
         document.getElementById("slika").disabled = false;
         document.getElementById("oboje").disabled = false;
       }
     }
   
-    // When the "slika" button is clicked, start the animation.
+
     document.getElementById("oboje").addEventListener("click", function () {
-      // Clear both canvases when starting
+
       linesCtx.clearRect(0, 0, linesCanvas.width, linesCanvas.height);
       imageCtx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
       x = 0;
@@ -626,6 +670,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!animating) {
         animating = true;
         this.disabled = true;
+        spriteAnimator.clear();
         document.getElementById("start").disabled = true;
         document.getElementById("oboje").disabled = true;
         document.getElementById("erase").disabled = true;
@@ -636,43 +681,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   //sprite
-  function initializeSpriteAnimator() {
-    const spriteAnimator = new SpriteAnimator("../img/sprite.png", 371, 15, 10, "spriteCanvas");
-}
 
-class SpriteAnimator {
-    constructor(imageSrc, frameHeight, totalFrames, frameRate, canvasId) {
-        this.image = new Image();
-        this.image.src = imageSrc;
-        this.frameHeight = frameHeight;
-        this.totalFrames = totalFrames;
-        this.frameRate = frameRate; // Frames per second
-        this.currentFrame = 0;
-        this.canvas = document.getElementById(canvasId);
-        this.ctx = this.canvas.getContext("2d");
-        this.image.onload = () => this.startAnimation();
-    }
 
-    startAnimation() {
-        this.intervalId = setInterval(() => this.updateFrame(), 1000 / this.frameRate);
-    }
-
-    updateFrame() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.drawImage(
-            this.image,
-            0, this.currentFrame * this.frameHeight, // Source x, y
-            this.image.width, this.frameHeight,     // Source width, height
-            0, 0,                                   // Destination x, y
-            this.canvas.width, this.canvas.height  // Destination width, height
-        );
-
-        if (this.currentFrame >= this.totalFrames - 1) {
-            clearInterval(this.intervalId); // Stop animation at last frame
-        } else {
-            this.currentFrame++; // Move to the next frame
-        }
-    }
-}
-;
   
