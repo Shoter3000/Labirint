@@ -1,4 +1,3 @@
-
 //sweetalert
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.sweet').addEventListener('click', function() {
