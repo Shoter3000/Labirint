@@ -25,6 +25,7 @@ class SpriteAnimator {
         this.currentFrame = 0;
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext("2d");
+        this.clickSound = new Audio('sound/click.mp3');
     }
 
     startAnimation() {
@@ -43,11 +44,13 @@ class SpriteAnimator {
         );
 
         if (this.currentFrame >= this.totalFrames - 1) {
+            this.clickSound.play();
             clearInterval(this.intervalId); // Stop animation at last frame
         } else {
             this.currentFrame++; // Move to the next frame
         }
     }
+
     clear() {
         if (this.intervalId) {
             clearInterval(this.intervalId); // Ustavi animacijo, če teče
@@ -55,6 +58,7 @@ class SpriteAnimator {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Pobriši
     }
 };
+
 const spriteAnimator = new SpriteAnimator("img/spriteAni.png", 278.13, 15, 10, "spriteCanvas");
 //narisi
 document.addEventListener("DOMContentLoaded", function () {
