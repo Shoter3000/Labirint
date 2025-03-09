@@ -55,7 +55,7 @@ class SpriteAnimator {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Pobriši
     }
 };
-const spriteAnimator = new SpriteAnimator("../img/spriteAni.png", 278.13, 15, 10, "spriteCanvas");
+const spriteAnimator = new SpriteAnimator("img/spriteAni.png", 278.13, 15, 10, "spriteCanvas");
 //narisi
 document.addEventListener("DOMContentLoaded", function () {
     let x = 0;
@@ -696,5 +696,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-
-  
