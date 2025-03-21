@@ -1,7 +1,6 @@
 # Labirint Projekt
 
-Projekt **Labirint** je interaktivni spletni labirint, kjer uporabnik izbira različne animacije in spreminja hitrost poti od začetka labitrinta in konca labirinta.<br>
-Ta projekt je bil ustvarjen v sklopu ene izmed šolskih nalog.
+Projekt **Labirint** je interaktivni spletni labirint, kjer uporabnik izbira različne animacije in spreminja hitrost poti od začetka labitrinta in konca labirinta.
 
 ## Tehnologije
 
@@ -10,7 +9,8 @@ Ta projekt je bil ustvarjen v sklopu ene izmed šolskih nalog.
 - **JavaScript**: Animacije od starta do cilja, zaznavanje uporabniških ukazov
 
 ## Razvijalec
-Nejc Vidmar
+Nejc Vidmar<br>
+_Ta projekt je bil ustvarjen v sklopu ene izmed šolskih nalog._
 
 ## Licenca
 MIT LICENSE
